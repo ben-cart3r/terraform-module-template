@@ -1,0 +1,16 @@
+name: Pull Request Validation
+
+on:
+  pull_request:
+    types: [opened, synchronize, labeled, unlabeled]
+    branches:
+      - main
+
+jobs:
+  static_analysis:
+    name: Static analysis
+    uses: ./.github/workflows/reusable-static-analysis.yaml
+
+  label_pull_request:
+    name: Add / verify PR labels
+    uses: ./.github/workflows/reusable-label-validation.yaml
